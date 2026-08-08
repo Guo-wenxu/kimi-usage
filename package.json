@@ -1,0 +1,110 @@
+{
+  "name": "kimi-usage",
+  "displayName": "Kimi Usage",
+  "description": "Monitor Kimi Code quota usage in real-time, with OAuth device-flow sign-in.",
+  "version": "0.3.0",
+  "publisher": "kayuii",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Guo-wenxu/kimi-usage.git"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "img/logo.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "kimiUsage.refresh",
+        "title": "Kimi Usage: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "kimiUsage.signIn",
+        "title": "Kimi Usage: Sign In (OAuth)",
+        "icon": "$(sign-in)"
+      },
+      {
+        "command": "kimiUsage.signOut",
+        "title": "Kimi Usage: Sign Out",
+        "icon": "$(sign-out)"
+      },
+      {
+        "command": "kimiUsage.setApiKey",
+        "title": "Kimi Usage: Set API Key (sk-...)",
+        "icon": "$(key)"
+      },
+      {
+        "command": "kimiUsage.openConsole",
+        "title": "Kimi Usage: Open Kimi Code Console",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "kimiUsage.showDashboard",
+        "title": "Kimi Usage: Show Usage Dashboard",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "kimiUsage.clearHistory",
+        "title": "Kimi Usage: Clear Auto-tracked History",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "kimiUsage.showOutput",
+        "title": "Kimi Usage: Show Output",
+        "icon": "$(output)"
+      }
+    ],
+    "configuration": {
+      "title": "Kimi Usage",
+      "properties": {
+        "kimiUsage.refreshIntervalSeconds": {
+          "type": "number",
+          "default": 60,
+          "minimum": 30,
+          "description": "Refresh interval in seconds (minimum 30 seconds)."
+        },
+        "kimiUsage.language": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "en",
+            "zh-CN"
+          ],
+          "enumDescriptions": [
+            "Follow VS Code display language",
+            "English",
+            "简体中文"
+          ],
+          "default": "zh-CN",
+          "description": "Display language for the dashboard (auto-detection or manual selection)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "node esbuild.js --production",
+    "build": "node esbuild.js",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.0",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "esbuild": "^0.19.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.0"
+  }
+}

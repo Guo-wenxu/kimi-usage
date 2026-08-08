@@ -1,0 +1,10 @@
+node_modules/
+out/
+*.vsix
+.vscode-test/
+*.log
+.DS_Store
+preview/*.html
+preview/gen.js
+.playwright-mcp/
+.cursor/
